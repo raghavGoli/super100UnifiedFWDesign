@@ -1,4 +1,4 @@
-package everShop;
+package com.everShop;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
