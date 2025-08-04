@@ -16,6 +16,15 @@ public class loginPagePOM extends BasePOM{
     private static final By password_input =By.xpath("//input[@placeholder='Password']");
     private static final By submit_btn =By.xpath("//button[@type='submit']");
 
+    public loginPagePOM get() {
+        String resourcePath = "/account/login";
+        String baseURL = "https://demo.evershop.io";
+        String newURL =  baseURL.concat(resourcePath);
+        wd.get(newURL);
+        wd.manage().window().maximize();
+        wd.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+        return this;
+    }
 
     public loginPagePOM setEmail(String email){
       wd.findElement(email_input).sendKeys(email);

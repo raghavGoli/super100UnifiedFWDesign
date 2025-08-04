@@ -15,16 +15,15 @@ public class loginTestCase {
     @BeforeTest
     public void initiateChromeAndNavigateToURL(){
         wd =new ChromeDriver();
-        wd.get("https://demo.evershop.io/account/login");
-        wd.manage().window().maximize();
-        wd.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
 
     }
 
     @Test
     public void verifyLoginEverShop(){
-       loginPagePOM loginobj = new loginPagePOM(wd);
-        loginobj.loginToEverShopSite("venkata.rg1988@gmail.com","Sdetjob@12").isKidsMenuDisplayed();
+        loginPagePOM loginobj = new loginPagePOM(wd);
+        loginobj.get()
+                .loginToEverShopSite("venkata.rg1988@gmail.com","Sdetjob@12")
+                .isKidsMenuDisplayed();
     }
 
 
