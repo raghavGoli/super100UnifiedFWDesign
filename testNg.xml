@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Demo EverShop E2E Automation">
+    <test name="loginPageTest">
+        <classes>
+            <class name="com.everShop.loginTestCase"/>
+        </classes>
+    </test>
+</suite>

@@ -19,6 +19,7 @@
     <apache.poi.version>5.4.1</apache.poi.version>
     <log4j.version>2.25.1</log4j.version>
     <jackson-databind.version>2.19.2</jackson-databind.version>
+    <maven.surefire.plugin.version>3.5.3</maven.surefire.plugin.version>
 
   </properties>
 
@@ -97,4 +98,20 @@
     </dependency>
 
   </dependencies>
+
+<build>
+<plugins>
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>${maven.surefire.plugin.version}</version>
+    <configuration>
+      <suiteXmlFiles>
+        <suiteXmlFile>testNg.xml</suiteXmlFile>
+      </suiteXmlFiles>
+    </configuration>
+  </plugin>
+</plugins>
+</build>
+
 </project>
