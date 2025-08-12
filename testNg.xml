@@ -2,7 +2,7 @@
 <suite name="Demo EverShop E2E Automation">
     <test name="loginPageTest">
         <classes>
-            <class name="com.everShop.loginTestCase"/>
+            <class name="com.everShop.LoginTestCase"/>
         </classes>
     </test>
 </suite>

@@ -3,50 +3,47 @@ package com.everShop;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import java.time.Duration;
+public class LoginPOM extends BasePOM{
 
-public class loginPagePOM extends BasePOM{
-
-    public loginPagePOM(WebDriver wd){
+    public LoginPOM(WebDriver wd){
         super(wd);
     }
+
     private By email_input =By.xpath("//input[@placeholder='Email']");
     private By password_input =By.xpath("//input[@placeholder='Password']");
     private By submit_btn =By.xpath("//button[@type='submit']");
 
-    public loginPagePOM get() {
+    public LoginPOM get() {
         String resourcePath = "/account/login";
         String baseURL = "https://demo.evershop.io";
         String newURL =  baseURL.concat(resourcePath);
-        wd.get(newURL);
-        wd.manage().window().maximize();
-        wd.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+        get(newURL);
         return this;
     }
 
-    public loginPagePOM setEmail(String email){
+    public LoginPOM setEmail(String email){
       wd.findElement(email_input).sendKeys(email);
       return this;
     }
 
-    public loginPagePOM setPassword(String password){
+    public LoginPOM setPassword(String password){
         wd.findElement(password_input).sendKeys(password);
         return this;
     }
 
-    public homePagePOM clickSubmitButton(){
+    public HomePOM clickSubmitButton(){
         wd.findElement(submit_btn).click();
-        return new homePagePOM(wd);
+        return new HomePOM(wd);
 
     }
 
 
-    public homePagePOM loginToEverShopSite(String email,String password)
+    public HomePOM loginToEverShopSite(String email, String password)
     {
         setEmail(email);
         setPassword(password);
         clickSubmitButton();
-        return new homePagePOM(wd);
+        return new HomePOM(wd);
     }
 
 
