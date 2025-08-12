@@ -10,9 +10,9 @@ public class loginPagePOM extends BasePOM{
     public loginPagePOM(WebDriver wd){
         super(wd);
     }
-    private static final By email_input =By.xpath("//input[@placeholder='Email']");
-    private static final By password_input =By.xpath("//input[@placeholder='Password']");
-    private static final By submit_btn =By.xpath("//button[@type='submit']");
+    private By email_input =By.xpath("//input[@placeholder='Email']");
+    private By password_input =By.xpath("//input[@placeholder='Password']");
+    private By submit_btn =By.xpath("//button[@type='submit']");
 
     public loginPagePOM get() {
         String resourcePath = "/account/login";
