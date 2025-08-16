@@ -22,17 +22,15 @@ public class ProductPOM extends BasePOM{
 
     public ProductPOM fillItemQty(String quantity)
     {
-        clearText(wd.findElement(itemQntyInput));
-        WaitManager.waitForElementToBeClickable(wd,itemQntyInput);
-        setText(wd.findElement(itemQntyInput),quantity);
+        wd.findElement(itemQntyInput).clear();
+        wd.findElement(itemQntyInput).sendKeys(quantity);
         return this;
     }
 
     public ProductPOM  selectItemSizeOrColor(String size){
         By element= getItemSizeOrColorLocator(size);
         wd.findElement(element).click();
-        //did not work- waitForElementToHaveAtrributeWithSpecificValue
-        //WaitManager.waitForElementToHaveAtrributeWithSpecificValue(wd, wd.findElement(element).findElement(By.xpath("//parent::li")), "class", "selected" );
+        WaitManager.waitForElementToHaveAtrributeWithSpecificValue(wd, wd.findElement(element).findElement(By.xpath("parent::li")), "class", "selected" );
         return this;
     }
 
