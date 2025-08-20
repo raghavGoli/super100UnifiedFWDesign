@@ -2,7 +2,11 @@
 <suite name="Demo EverShop E2E Automation">
     <test name="loginPageTest">
         <classes>
-            <class name="com.everShop.LoginTestCase"/>
+            <class name="com.everShop.LoginTestCase">
+                <methods>
+                    <include name="FetchProductDetailsFromCheckoutPage"></include>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

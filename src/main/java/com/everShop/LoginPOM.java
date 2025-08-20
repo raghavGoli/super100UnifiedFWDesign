@@ -1,5 +1,6 @@
 package com.everShop;
 
+import com.everShop.dao.input.LoginInputDAO;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -38,10 +39,10 @@ public class LoginPOM extends BasePOM{
     }
 
 
-    public HomePOM loginToEverShopSite(String email, String password)
+    public HomePOM loginToEverShopSite(LoginInputDAO loginInputDAO)
     {
-        setEmail(email);
-        setPassword(password);
+        setEmail(loginInputDAO.getEmail());
+        setPassword(loginInputDAO.getPassword());
         clickSubmitButton();
         return new HomePOM(wd);
     }
