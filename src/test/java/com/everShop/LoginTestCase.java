@@ -42,7 +42,6 @@ public class LoginTestCase {
         HomeInputDAO homeInputDAO = new HomeInputDAO(productNameToClick);
         ProductInputDAO productInputDAO = new ProductInputDAO("XL", "Black", "2");
         CheckoutInputDAO checkoutInputDAO = new CheckoutInputDAO(fullName, telephone, address, city, country, province, postalCode, shippingMethodName, paymentMethodType);
-
         loginObj.get()
                 .loginToEverShopSite(loginInputDAO)
                 .isKidsMenuDisplayed().clickProductName(homeInputDAO)
@@ -59,7 +58,7 @@ public class LoginTestCase {
     }
 
     @Test
-    public void FetchProductDetailsInCartPage() {
+    public void fetchProductDetailsInCartPage() {
         LoginPOM loginObj = new LoginPOM(wd);
 
         loginObj.get()
@@ -73,7 +72,7 @@ public class LoginTestCase {
 
 
     @Test
-    public void FetchProductDetailsInHomePage() {
+    public void fetchProductDetailsInHomePage() {
         LoginPOM loginObj = new LoginPOM(wd);
         HomeOutputDAO homeOutputDAO = loginObj.get()
                 .loginToEverShopSite(loginInputDAO)
@@ -84,7 +83,7 @@ public class LoginTestCase {
 
 
     @Test
-    public void FetchProductDetailsFromCheckoutPage() {
+    public void fetchProductDetailsFromCheckoutPage() {
         LoginPOM loginObj = new LoginPOM(wd);
 
         loginObj.get()
@@ -93,6 +92,23 @@ public class LoginTestCase {
 
         CheckoutPOM checkoutPOM = new CheckoutPOM(wd);
         CheckoutOutputDAO checkoutOutputDAO = checkoutPOM.get()
+                .getCheckoutDataFromUI();
+        System.out.println(checkoutOutputDAO);
+
+    }
+
+    @Test
+    public void fetchProductDetailsFromSuccessPage() {
+        LoginPOM loginObj = new LoginPOM(wd);
+        HomeInputDAO homeInputDAO = new HomeInputDAO(productNameToClick);
+        ProductInputDAO productInputDAO = new ProductInputDAO("XL", "Black", "2");
+        CheckoutInputDAO checkoutInputDAO = new CheckoutInputDAO(fullName, telephone, address, city, country, province, postalCode, shippingMethodName, paymentMethodType);
+        loginObj.get()
+                .loginToEverShopSite(loginInputDAO)
+                .isKidsMenuDisplayed();
+
+        SuccessPOM successPOM = new SuccessPOM(wd);
+        CheckoutOutputDAO checkoutOutputDAO = successPOM.getPage("c56d0354-bf7f-4896-9ee5-10fed340f03e")
                 .getCheckoutDataFromUI();
         System.out.println(checkoutOutputDAO);
 

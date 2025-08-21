@@ -19,7 +19,6 @@ import java.util.List;
 public class CheckoutPOM extends BasePOM {
 
     public CheckoutPOM(WebDriver wd) {
-
         super(wd);
         checkoutOutputDAO = new CheckoutOutputDAO();
     }
@@ -42,8 +41,8 @@ public class CheckoutPOM extends BasePOM {
     private By productSize = By.xpath(".//div[contains(@class,'cart-item-variant-options')]//li[1]//span[2]");
     private By productColor = By.xpath(".//div[contains(@class,'cart-item-variant-options')]//li[2]//span[2]");
     private By productPrice = By.xpath(".//span");
-
-    private By checkoutSummarySection =By.xpath("//div[contains(@class,'checkout-summary h-full')]");
+    private By itemQuantity = By.xpath(".//div[@class='product-thumbnail']//span");
+    private By checkoutSummarySection = By.xpath("//div[contains(@class,'checkout-summary h-full')]");
     private By subTotalPrice = By.xpath(".//span[text()='Sub total']/following-sibling::div//div[2]");
 
     private By deliveryTypeText = By.xpath(".//span[text()='Shipping']//following-sibling::div//div[1]");
@@ -157,6 +156,9 @@ public class CheckoutPOM extends BasePOM {
             WebElement productCell1 = row.findElement(By.xpath(".//td[3]"));
             String productName = productCell.findElement(productName_bold).getText();
             product.setProductName(productName);
+            String itemsQty = row.findElement(itemQuantity).getText();
+            int itemsQty_num = Integer.parseInt(itemsQty);
+            product.setItemQty(itemsQty_num);
             String productSize_str = productCell.findElement(productSize).getText();
             product.setProductSize(productSize_str);
             String productColor_str = productCell.findElement(productColor).getText();
@@ -212,7 +214,6 @@ public class CheckoutPOM extends BasePOM {
         getCheckoutProductData().getCheckoutOrderSummaryData();
         return checkoutOutputDAO;
     }
-
 
 
 }

@@ -9,8 +9,15 @@ public class ProductDAO {
     private int productQty;
     private float totalPrice;
     private String skuLabel ;
+    private int itemQty;
 
+    public int getItemQty() {
+        return itemQty;
+    }
 
+    public void setItemQty(int itemQty) {
+        this.itemQty = itemQty;
+    }
 
     public String getProductName() {
         return productName;
@@ -78,6 +85,7 @@ public class ProductDAO {
                 ", productQty=" + productQty +
                 ", totalPrice=" + totalPrice +
                 ", skuLabel='" + skuLabel + '\'' +
+                ", itemQty=" + itemQty +
                 '}';
     }
 }

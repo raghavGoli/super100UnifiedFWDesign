@@ -73,7 +73,7 @@ public class CartPOM extends BasePOM {
             String productColor = productCell.findElement(productColorTxt).getText();
             product.setProductColor(productColor);
             WebElement priceCell = row.findElement(By.xpath(".//td[2]"));
-            String productPrice = priceCell.findElement(productPriceTxt).getText();
+            String productPrice = priceCell.findElement(productPriceTxt).getText().replaceAll(",","");
             String productPriceRemovedDollar = productPrice.substring(1, productPrice.length());
             product.setProductPrice(Float.parseFloat(productPriceRemovedDollar));
 
@@ -82,7 +82,7 @@ public class CartPOM extends BasePOM {
             product.setProductQty(Integer.parseInt(productQty));
 
             WebElement totalPriceCell = row.findElement(By.xpath(".//td[4]"));
-            String productTotalPrice = totalPriceCell.findElement(By.xpath(".//span")).getText();
+            String productTotalPrice = totalPriceCell.findElement(By.xpath(".//span")).getText().replaceAll(",","");
             String productTPPriceRemovedDollar = productTotalPrice.substring(1, productTotalPrice.length());
 
             product.setTotalPrice(Float.parseFloat(productTPPriceRemovedDollar));
