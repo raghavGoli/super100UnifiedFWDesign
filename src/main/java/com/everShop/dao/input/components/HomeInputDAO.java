@@ -1,4 +1,4 @@
-package com.everShop.dao.input;
+package com.everShop.dao.input.components;
 
 public class HomeInputDAO {
 

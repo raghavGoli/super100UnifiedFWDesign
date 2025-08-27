@@ -1,6 +1,7 @@
 package com.everShop;
 
 import com.everShop.components.HeaderPOM;
+import com.everShop.utility.PropertyReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -17,29 +18,29 @@ public class BasePOM {
     protected HeaderPOM headerPOM;
 
     public BasePOM(WebDriver wd) {
-        this.wd=wd;
-        headerPOM =new HeaderPOM(wd);
+        this.wd = wd;
+        headerPOM = new HeaderPOM(wd);
     }
 
-    public BasePOM get(String url) {
-        wd.get(url);
+    public BasePOM get(String resourcePath) {
+        String baseUrl = PropertyReader.getProperty("url");
+        wd.get(baseUrl.concat(resourcePath));
         wd.manage().window().maximize();
         return this;
     }
 
-    public HeaderPOM getHeader(){
+    public HeaderPOM getHeader() {
         return headerPOM;
     }
 
-    public void waitForElementToBeClickable(By locator)
-    {
-        WebDriverWait webDriverWait =new WebDriverWait(wd, Duration.ofSeconds(20));
+    public void waitForElementToBeClickable(By locator) {
+        WebDriverWait webDriverWait = new WebDriverWait(wd, Duration.ofSeconds(20));
         webDriverWait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     /* added this method as unable to clear the quantity input box usign clear*/
 
-    public void clearText(WebElement inputElement){
+    public void clearText(WebElement inputElement) {
         JavascriptExecutor js = (JavascriptExecutor) wd;
         js.executeScript("arguments[0].value = '';", inputElement);
     }

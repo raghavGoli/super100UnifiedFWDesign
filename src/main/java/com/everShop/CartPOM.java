@@ -34,11 +34,9 @@ public class CartPOM extends BasePOM {
     private CartOutputDAO cartOutputDAO;
 
 
-    public CartPOM get() {
+    public CartPOM getPage() {
         String resourcePath = "/cart";
-        String baseURL = "https://demo.evershop.io";
-        String newURL = baseURL.concat(resourcePath);
-        get(newURL);
+        get(resourcePath);
         WaitManager.waitForElementToBeLocated(wd, checkoutBtn);
         return this;
     }

@@ -1,7 +1,9 @@
 package com.everShop;
 
 import com.everShop.dao.output.CheckoutOutputDAO;
+import com.everShop.dao.output.SuccessOutputDAO;
 import com.everShop.dao.output.components.CheckoutSummaryDAO;
+import com.everShop.dao.output.components.CustomerInfoDAO;
 import com.everShop.dao.output.components.ProductDAO;
 import com.everShop.utility.WaitManager;
 import org.openqa.selenium.By;
@@ -11,12 +13,16 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SuccessPOM extends BasePOM{
+public class SuccessPOM extends BasePOM {
+
+
     public SuccessPOM(WebDriver wd) {
         super(wd);
         checkoutOutputDAO = new CheckoutOutputDAO();
+        successOutputDAO = new SuccessOutputDAO();
 
     }
+
     private By tableRow = By.xpath("//div[contains(@class,'checkout-summary h-full')]//table[@class='listing items-table']//tbody//tr");
     private By productName_bold = By.xpath(".//span[contains(@class,'semibold')]");
     private By productSize = By.xpath(".//div[contains(@class,'cart-item-variant-options')]//li[1]//span[2]");
@@ -25,23 +31,24 @@ public class SuccessPOM extends BasePOM{
     private By itemQuantity = By.xpath(".//div[@class='product-thumbnail']//span");
     private By checkoutSummarySection = By.xpath("//div[contains(@class,'checkout-summary h-full')]");
     private By subTotalPrice = By.xpath(".//span[text()='Sub total']/following-sibling::div//div[2]");
-
+    private By itemsCount = By.xpath("//div[contains(@class,'checkout-summary h-full')]//span[text()='Sub total']/following-sibling::div/div[1]");
     private By deliveryTypeText = By.xpath(".//span[text()='Shipping']//following-sibling::div//div[1]");
     private By shippingPrice = By.xpath(".//span[text()='Shipping']//following-sibling::div//div[2]");
     private By discountPrice = By.xpath(".//span[text()='Discount']//following-sibling::div//div[2]");
     private By grandTotalPrice = By.xpath(".//div[@class='grand-total-value']");
     private By taxprice = By.xpath(".//div[contains(@class,'grand-total')]//span[@class='italic']");
 
+    private By customerEmailAddress = By.xpath("//h3[text()='Contact information']/parent::div/following-sibling::div[2]");
+    private By paymentMethodText = By.xpath("//h3[text()='Payment Method']/parent::div/following-sibling::div");
 
     public SuccessPOM getPage(String orderId) {
-        String resourcePath = "/checkout/success/"+orderId;
-        String baseURL = "https://demo.evershop.io";
-        String newURL =  baseURL.concat(resourcePath);
-        get(newURL);
+        String resourcePath = "/checkout/success/" + orderId;
+        get(resourcePath);
         return this;
     }
 
     private CheckoutOutputDAO checkoutOutputDAO;
+    private SuccessOutputDAO successOutputDAO;
 
     public SuccessPOM getCheckoutProductData() {
 
@@ -71,7 +78,7 @@ public class SuccessPOM extends BasePOM{
     }
 
 
-    public SuccessPOM getCheckoutOrderSummaryData() {
+    public SuccessPOM getSuccessPageOrderSummaryData() {
         CheckoutSummaryDAO checkoutSummaryDAO = new CheckoutSummaryDAO();
 
         WebElement checkoutSummaryCell = wd.findElement(checkoutSummarySection);
@@ -83,6 +90,10 @@ public class SuccessPOM extends BasePOM{
         float subTotalPriceFloatValue = Float.parseFloat(subTotalPriceDollarRemoved);
         checkoutSummaryDAO.setSubTotalPrice(subTotalPriceFloatValue);
 
+        String itemsCount = checkoutSummaryCell.findElement(subTotalPrice).getText().split(" ")[0];
+        int itemsCount_int = Integer.parseInt(itemsCount);
+        checkoutSummaryDAO.setItemsCount(itemsCount_int);
+
         String shippingPrice_str = checkoutSummaryCell.findElement(shippingPrice).getText().replaceAll(",", "");
         String shippingPriceDollarRemoved = shippingPrice_str.substring(1, shippingPrice_str.length());
         float shippingPriceFloatValue = Float.parseFloat(shippingPriceDollarRemoved);
@@ -92,7 +103,6 @@ public class SuccessPOM extends BasePOM{
         String discountedPriceDollarRemoved = discountedPrice_str.substring(1, discountedPrice_str.length());
         float discountedPriceFloatValue = Float.parseFloat(discountedPriceDollarRemoved);
         checkoutSummaryDAO.setShippingPrice(discountedPriceFloatValue);
-
 
         String grandTotalPrice_str = checkoutSummaryCell.findElement(grandTotalPrice).getText().replaceAll(",", "");
         String grandTotalDollarRemoved = grandTotalPrice_str.substring(1, grandTotalPrice_str.length());
@@ -108,8 +118,25 @@ public class SuccessPOM extends BasePOM{
     }
 
 
-    public CheckoutOutputDAO getCheckoutDataFromUI() {
-        getCheckoutProductData().getCheckoutOrderSummaryData();
-        return checkoutOutputDAO;
+    public SuccessPOM getOrderSummaryDataFromUI() {
+        getCheckoutProductData();
+        return this;
     }
+
+    public SuccessPOM getSuccessPageCustomerInfo() {
+
+        CustomerInfoDAO customerInfoDAO = new CustomerInfoDAO();
+        customerInfoDAO.setEmailId(wd.findElement(customerEmailAddress).getText());
+        customerInfoDAO.setPaymentMethod(wd.findElement(paymentMethodText).getText());
+        successOutputDAO.setCustomerInfoDAO(customerInfoDAO);
+
+        return this;
+    }
+
+    public SuccessOutputDAO getSuccessPageData() {
+
+        getOrderSummaryDataFromUI().getSuccessPageCustomerInfo();
+        return successOutputDAO;
+    }
+
 }

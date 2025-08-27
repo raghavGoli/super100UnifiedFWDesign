@@ -1,6 +1,6 @@
 package com.everShop;
 
-import com.everShop.dao.input.LoginInputDAO;
+import com.everShop.dao.input.components.LoginInputDAO;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -14,11 +14,9 @@ public class LoginPOM extends BasePOM{
     private By password_input =By.xpath("//input[@placeholder='Password']");
     private By submit_btn =By.xpath("//button[@type='submit']");
 
-    public LoginPOM get() {
+    public LoginPOM getPage() {
         String resourcePath = "/account/login";
-        String baseURL = "https://demo.evershop.io";
-        String newURL =  baseURL.concat(resourcePath);
-        get(newURL);
+        get(resourcePath);
         return this;
     }
 

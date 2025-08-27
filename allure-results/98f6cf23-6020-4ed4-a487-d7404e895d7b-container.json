@@ -1,0 +1,1 @@
+{"uuid":"98f6cf23-6020-4ed4-a487-d7404e895d7b","name":"Demo EverShop E2E Automation","children":["3dd42a79-b842-4f89-80f7-81a322f19572"],"befores":[{"name":"beforeSuite","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1756307766435,"stop":1756307766441}],"afters":[],"start":1756307766417,"stop":1756307787515}

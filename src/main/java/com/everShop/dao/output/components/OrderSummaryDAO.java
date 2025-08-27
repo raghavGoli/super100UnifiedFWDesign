@@ -5,6 +5,7 @@ public class OrderSummaryDAO {
     private float subTotalPrice;
     private int itemsCount;
     private float shippingCharges;
+    private String shippingMethodType;
     private float totalOrderPrice;
     private float taxPrice;
     private float discountPrice;
@@ -13,16 +14,13 @@ public class OrderSummaryDAO {
         return subTotalPrice;
     }
 
-    @Override
-    public String toString() {
-        return "OrderSummaryDAO{" +
-                "subTotalPrice=" + subTotalPrice +
-                ", itemsCount=" + itemsCount +
-                ", shippingCharges=" + shippingCharges +
-                ", totalOrderPrice=" + totalOrderPrice +
-                ", taxPrice=" + taxPrice +
-                ", discountPrice=" + discountPrice +
-                '}';
+    public String getShippingMethodType() {
+        return shippingMethodType;
+    }
+    
+
+    public void setShippingMethodType(String shippingMethodType) {
+        this.shippingMethodType = shippingMethodType;
     }
 
     public void setSubTotalPrice(float subTotalPrice) {
@@ -67,5 +65,18 @@ public class OrderSummaryDAO {
 
     public void setDiscountPrice(float discountPrice) {
         this.discountPrice = discountPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderSummaryDAO{" +
+                "subTotalPrice=" + subTotalPrice +
+                ", itemsCount=" + itemsCount +
+                ", shippingCharges=" + shippingCharges +
+                ", shippingMethodType='" + shippingMethodType + '\'' +
+                ", totalOrderPrice=" + totalOrderPrice +
+                ", taxPrice=" + taxPrice +
+                ", discountPrice=" + discountPrice +
+                '}';
     }
 }

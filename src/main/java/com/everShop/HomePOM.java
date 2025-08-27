@@ -1,9 +1,8 @@
 package com.everShop;
 
-import com.everShop.dao.input.HomeInputDAO;
+import com.everShop.dao.input.components.HomeInputDAO;
 import com.everShop.dao.output.HomeOutputDAO;
 import com.everShop.dao.output.components.ProductDAO;
-import com.everShop.utility.WaitManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,11 +34,9 @@ public class HomePOM extends BasePOM {
     }
 
 
-    public HomePOM get() {
+    public HomePOM getPage() {
         String resourcePath = "/";
-        String baseURL = "https://demo.evershop.io";
-        String newURL = baseURL.concat(resourcePath);
-        get(newURL);
+        get(resourcePath);
         return this;
     }
 

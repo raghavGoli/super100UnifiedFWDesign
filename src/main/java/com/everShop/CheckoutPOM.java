@@ -1,14 +1,11 @@
 package com.everShop;
 
-import com.everShop.dao.input.CheckoutInputDAO;
-import com.everShop.dao.output.CartOutputDAO;
+import com.everShop.dao.input.components.CheckoutInputDAO;
 import com.everShop.dao.output.CheckoutOutputDAO;
 import com.everShop.dao.output.components.CheckoutSummaryDAO;
-import com.everShop.dao.output.components.OrderSummaryDAO;
 import com.everShop.dao.output.components.ProductDAO;
 import com.everShop.utility.WaitManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -136,9 +133,7 @@ public class CheckoutPOM extends BasePOM {
 
     public CheckoutPOM get() {
         String resourcePath = "/checkout";
-        String baseURL = "https://demo.evershop.io";
-        String newURL = baseURL.concat(resourcePath);
-        get(newURL);
+        get(resourcePath);
         WaitManager.waitForElementToBeLocated(wd, placeOrder_btn);
         return this;
     }

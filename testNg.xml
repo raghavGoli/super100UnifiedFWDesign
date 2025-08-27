@@ -4,7 +4,7 @@
         <classes>
             <class name="com.everShop.LoginTestCase">
                 <methods>
-                    <include name="fetchProductDetailsFromCheckoutPage"></include>
+                    <include name="testE2EWorkFlow"></include>
                 </methods>
             </class>
         </classes>

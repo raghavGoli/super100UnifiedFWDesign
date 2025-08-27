@@ -1,6 +1,6 @@
 package com.everShop;
 
-import com.everShop.dao.input.ProductInputDAO;
+import com.everShop.dao.input.components.ProductInputDAO;
 import com.everShop.utility.WaitManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
