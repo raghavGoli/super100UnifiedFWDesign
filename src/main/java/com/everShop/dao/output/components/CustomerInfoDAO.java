@@ -1,5 +1,7 @@
 package com.everShop.dao.output.components;
 
+import java.util.Objects;
+
 public class CustomerInfoDAO {
 
     private String emailId;
@@ -27,5 +29,13 @@ public class CustomerInfoDAO {
                 "emailId='" + emailId + '\'' +
                 ", paymentMethod='" + paymentMethod + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomerInfoDAO that = (CustomerInfoDAO) o;
+        return Objects.equals(emailId, that.emailId) && Objects.equals(paymentMethod, that.paymentMethod);
     }
 }

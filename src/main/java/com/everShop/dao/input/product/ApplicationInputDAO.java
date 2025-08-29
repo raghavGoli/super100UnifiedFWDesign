@@ -54,4 +54,5 @@ public class ApplicationInputDAO {
     public CheckoutInputDAO getCheckoutInputDAO() {
         return checkoutInputDAO;
     }
+
 }

@@ -3,6 +3,7 @@ package com.everShop;
 import com.everShop.dao.input.components.HomeInputDAO;
 import com.everShop.dao.output.HomeOutputDAO;
 import com.everShop.dao.output.components.ProductDAO;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,14 +41,16 @@ public class HomePOM extends BasePOM {
         return this;
     }
 
+    @Step("Verify whether Kids menu button is dispayed")
     public HomePOM isKidsMenuDisplayed() {
         waitForElementToBeClickable(kidsButton);
         wd.findElement(kidsButton).isDisplayed();
         return this;
     }
 
+    @Step("Click on the Product Name")
     public ProductPOM clickProductName(HomeInputDAO homeInputDAO) {
-        wd.findElement(getProductLinkLocator(homeInputDAO.getProductName())).click();
+        wd.findElement(getProductLinkLocator(homeInputDAO.getProductNames().get(0))).click();
         return new ProductPOM(wd);
     }
 

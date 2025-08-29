@@ -95,4 +95,19 @@ public class CheckoutInputDAO {
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
+
+    @Override
+    public String toString() {
+        return "CheckoutInputDAO{" +
+                "fullName='" + fullName + '\'' +
+                ", telephoneNum='" + telephoneNum + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", province='" + province + '\'' +
+                ", postCode='" + postCode + '\'' +
+                ", shippingMethod='" + shippingMethod + '\'' +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                '}';
+    }
 }

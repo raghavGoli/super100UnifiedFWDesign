@@ -7,6 +7,8 @@ import com.everShop.dao.input.components.LoginInputDAO;
 import com.everShop.dao.input.components.ProductInputDAO;
 import com.everShop.dao.input.product.ApplicationInputDAO;
 
+import java.util.Arrays;
+
 public class Director {
 
     public static void fillDataUsingAPI(){
@@ -34,8 +36,8 @@ public class Director {
 
 
         LoginInputDAO loginInputDAO = new LoginInputDAO(emailId, appPwd);
-        HomeInputDAO homeInputDAO = new HomeInputDAO(productNameToClick);
-        ProductInputDAO productInputDAO = new ProductInputDAO("XL", "Black", "2");
+        HomeInputDAO homeInputDAO = new HomeInputDAO(Arrays.asList(productNameToClick));
+        ProductInputDAO productInputDAO = new ProductInputDAO("XL", "Black", "2",904.00f);
         CheckoutInputDAO checkoutInputDAO = new CheckoutInputDAO(fullName, telephone, address, city, country, province, postalCode, shippingMethodName, paymentMethodType);
 
          builder.setLoginInputDAO(loginInputDAO)

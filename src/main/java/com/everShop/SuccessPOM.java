@@ -41,6 +41,8 @@ public class SuccessPOM extends BasePOM {
     private By customerEmailAddress = By.xpath("//h3[text()='Contact information']/parent::div/following-sibling::div[2]");
     private By paymentMethodText = By.xpath("//h3[text()='Payment Method']/parent::div/following-sibling::div");
 
+    private By continue_shopping_btn=By.xpath("//span[text()='CONTINUE SHOPPING']");
+
     public SuccessPOM getPage(String orderId) {
         String resourcePath = "/checkout/success/" + orderId;
         get(resourcePath);
@@ -74,6 +76,7 @@ public class SuccessPOM extends BasePOM {
             products.add(product);
         }
         checkoutOutputDAO.setProducts(products);
+        successOutputDAO.setCheckoutOutputDAO(checkoutOutputDAO);
         return this;
     }
 
@@ -90,8 +93,8 @@ public class SuccessPOM extends BasePOM {
         float subTotalPriceFloatValue = Float.parseFloat(subTotalPriceDollarRemoved);
         checkoutSummaryDAO.setSubTotalPrice(subTotalPriceFloatValue);
 
-        String itemsCount = checkoutSummaryCell.findElement(subTotalPrice).getText().split(" ")[0];
-        int itemsCount_int = Integer.parseInt(itemsCount);
+        String itemsCountTxt = wd.findElement(itemsCount).getText().split(" ")[0];
+        int itemsCount_int = Integer.parseInt(itemsCountTxt);
         checkoutSummaryDAO.setItemsCount(itemsCount_int);
 
         String shippingPrice_str = checkoutSummaryCell.findElement(shippingPrice).getText().replaceAll(",", "");
@@ -114,6 +117,7 @@ public class SuccessPOM extends BasePOM {
         float taxAmountFloat = Float.parseFloat(taxAmountString);
         checkoutSummaryDAO.setTaxPrice(taxAmountFloat);
         checkoutOutputDAO.setCheckoutSummaryDAO(checkoutSummaryDAO);
+        successOutputDAO.setCheckoutSummaryDAO(checkoutSummaryDAO);
         return this;
     }
 
@@ -126,6 +130,7 @@ public class SuccessPOM extends BasePOM {
     public SuccessPOM getSuccessPageCustomerInfo() {
 
         CustomerInfoDAO customerInfoDAO = new CustomerInfoDAO();
+        WaitManager.waitForElementToBeLocated(wd,continue_shopping_btn);
         customerInfoDAO.setEmailId(wd.findElement(customerEmailAddress).getText());
         customerInfoDAO.setPaymentMethod(wd.findElement(paymentMethodText).getText());
         successOutputDAO.setCustomerInfoDAO(customerInfoDAO);
@@ -135,7 +140,7 @@ public class SuccessPOM extends BasePOM {
 
     public SuccessOutputDAO getSuccessPageData() {
 
-        getOrderSummaryDataFromUI().getSuccessPageCustomerInfo();
+        getOrderSummaryDataFromUI().getSuccessPageCustomerInfo().getSuccessPageOrderSummaryData();
         return successOutputDAO;
     }
 

@@ -1,18 +1,29 @@
 package com.everShop.dao.input.components;
 
+import java.util.List;
+
 public class HomeInputDAO {
 
-    private String productName;
+    private List<String> productNames;
 
-    public String getProductName() {
-        return productName;
+    public HomeInputDAO(List<String> productNames) {
+        this.productNames = productNames;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public List<String> getProductNames() {
+        return productNames;
     }
 
-    public HomeInputDAO(String productName) {
-        this.productName = productName;
+
+    public void addProductToTheList(String productName) {
+        this.productNames.add(productName);
+
+    }
+
+    @Override
+    public String toString() {
+        return "HomeInputDao{" +
+                "productNames=" + productNames +
+                '}';
     }
 }

@@ -2,6 +2,7 @@ package com.everShop;
 
 import com.everShop.dao.input.components.ProductInputDAO;
 import com.everShop.utility.WaitManager;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -48,6 +49,7 @@ public class ProductPOM extends BasePOM {
         return this;
     }
 
+    @Step("Click add to cart button")
     public ProductPOM clickAddToCartBtn() {
         wd.findElement(addToCartButton).click();
         WaitManager.waitForElementToBeLocated(wd, viewCartButton);
@@ -55,11 +57,13 @@ public class ProductPOM extends BasePOM {
 
     }
 
+    @Step("Click on View cart")
     public CartPOM clickViewCartButton() {
         wd.findElement(viewCartButton).click();
         return new CartPOM(wd);
     }
 
+    @Step("Fill the product Details")
     public ProductPOM fillProductDetails(ProductInputDAO productInputDAO) {
 
         selectItemSize(productInputDAO.getProductSize()).selectItemColor(productInputDAO.getProductColor())

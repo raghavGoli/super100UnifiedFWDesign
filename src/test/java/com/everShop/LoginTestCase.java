@@ -14,6 +14,7 @@ import com.everShop.dao.output.HomeOutputDAO;
 import com.everShop.dao.output.SuccessOutputDAO;
 import com.everShop.utility.PropertyReader;
 import com.everShop.verifications.Verifications;
+import jdk.jfr.Description;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -28,6 +29,7 @@ public class LoginTestCase extends BaseTest {
 
 
     @Test
+    @Description("Test E2E workflow of Demo Ever Shop")
     public void testE2EWorkFlow() {
         LoginPOM loginObj = new LoginPOM(wd);
 
@@ -48,7 +50,9 @@ public class LoginTestCase extends BaseTest {
                 .clickContinueToPayment()
                 .selectPaymentMethod(applicationInputDAO.getCheckoutInputDAO().getPaymentMethod())
                 .clickPlaceOrder().getSuccessPageData();
+        System.out.println(actualData);
 
+        Verifications.assertSuccessPage(actualData,applicationInputDAO);
 
     }
 

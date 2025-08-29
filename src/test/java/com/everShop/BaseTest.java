@@ -1,6 +1,7 @@
 package com.everShop;
 
 import com.everShop.utility.PropertyReader;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
@@ -19,6 +20,7 @@ public class BaseTest {
         PropertyReader.readPropertiesFile(envName);
     }
 
+    @Step("Initiating Chrome Session")
     @BeforeTest
     public void initChromeSession() {
         wd = new ChromeDriver();

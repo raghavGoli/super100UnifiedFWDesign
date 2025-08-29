@@ -29,4 +29,12 @@ public class LoginInputDAO {
     public LoginInputDAO() {
 
     }
+
+    @Override
+    public String toString() {
+        return "LoginInputDAO{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

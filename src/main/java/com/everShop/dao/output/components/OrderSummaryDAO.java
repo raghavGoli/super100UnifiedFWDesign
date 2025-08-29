@@ -1,30 +1,31 @@
 package com.everShop.dao.output.components;
 
+import java.util.List;
+import java.util.Objects;
+
 public class OrderSummaryDAO {
 
-    private float subTotalPrice;
+    private float subTotal;
+
     private int itemsCount;
-    private float shippingCharges;
+    private float shipppingCharges;
+
     private String shippingMethodType;
+
+    private List<ProductDAO> purchasedProducts;
+
     private float totalOrderPrice;
-    private float taxPrice;
-    private float discountPrice;
 
-    public float getSubTotalPrice() {
-        return subTotalPrice;
+    private float taxes;
+
+    private float discount;
+
+    public float getSubTotal() {
+        return subTotal;
     }
 
-    public String getShippingMethodType() {
-        return shippingMethodType;
-    }
-    
-
-    public void setShippingMethodType(String shippingMethodType) {
-        this.shippingMethodType = shippingMethodType;
-    }
-
-    public void setSubTotalPrice(float subTotalPrice) {
-        this.subTotalPrice = subTotalPrice;
+    public void setSubTotal(float subTotal) {
+        this.subTotal = subTotal;
     }
 
     public int getItemsCount() {
@@ -35,12 +36,12 @@ public class OrderSummaryDAO {
         this.itemsCount = itemsCount;
     }
 
-    public float getShippingCharges() {
-        return shippingCharges;
+    public float getShipppingCharges() {
+        return shipppingCharges;
     }
 
-    public void setShippingCharges(float shippingCharges) {
-        this.shippingCharges = shippingCharges;
+    public void setShipppingCharges(float shipppingCharges) {
+        this.shipppingCharges = shipppingCharges;
     }
 
     public float getTotalOrderPrice() {
@@ -51,32 +52,58 @@ public class OrderSummaryDAO {
         this.totalOrderPrice = totalOrderPrice;
     }
 
-    public float getTaxPrice() {
-        return taxPrice;
+    public float getTaxes() {
+        return taxes;
     }
 
-    public void setTaxPrice(float taxPrice) {
-        this.taxPrice = taxPrice;
+    public void setTaxes(float taxes) {
+        this.taxes = taxes;
     }
 
-    public float getDiscountPrice() {
-        return discountPrice;
+    public float getDiscount() {
+        return discount;
     }
 
-    public void setDiscountPrice(float discountPrice) {
-        this.discountPrice = discountPrice;
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
+
+    public String getShippingMethodType() {
+        return shippingMethodType;
+    }
+
+    public void setShippingMethodType(String shippingMethodType) {
+        this.shippingMethodType = shippingMethodType;
+    }
+
+    public List<ProductDAO> getPurchasedProducts() {
+        return purchasedProducts;
+    }
+
+    public void setPurchasedProducts(List<ProductDAO> purchasedProducts) {
+        this.purchasedProducts = purchasedProducts;
     }
 
     @Override
     public String toString() {
-        return "OrderSummaryDAO{" +
-                "subTotalPrice=" + subTotalPrice +
+        return "OrderSummaryDao{" +
+                "subTotal=" + subTotal +
                 ", itemsCount=" + itemsCount +
-                ", shippingCharges=" + shippingCharges +
+                ", shipppingCharges=" + shipppingCharges +
                 ", shippingMethodType='" + shippingMethodType + '\'' +
+                ", purchasedProducts=" + purchasedProducts +
                 ", totalOrderPrice=" + totalOrderPrice +
-                ", taxPrice=" + taxPrice +
-                ", discountPrice=" + discountPrice +
+                ", taxes=" + taxes +
+                ", discount=" + discount +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderSummaryDAO that = (OrderSummaryDAO) o;
+        return Float.compare(subTotal, that.subTotal) == 0 && itemsCount == that.itemsCount && Float.compare(shipppingCharges, that.shipppingCharges) == 0 && Float.compare(totalOrderPrice, that.totalOrderPrice) == 0 && Float.compare(taxes, that.taxes) == 0 && Float.compare(discount, that.discount) == 0 && Objects.equals(shippingMethodType, that.shippingMethodType) && Objects.equals(purchasedProducts, that.purchasedProducts);
+    }
+
 }

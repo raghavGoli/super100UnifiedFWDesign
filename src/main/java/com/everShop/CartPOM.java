@@ -4,6 +4,7 @@ import com.everShop.dao.output.CartOutputDAO;
 import com.everShop.dao.output.components.OrderSummaryDAO;
 import com.everShop.dao.output.components.ProductDAO;
 import com.everShop.utility.WaitManager;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,7 +42,7 @@ public class CartPOM extends BasePOM {
         return this;
     }
 
-
+@Step("Click on checkout button")
     public CheckoutPOM clickCheckoutBtn() {
         wd.findElement(checkoutBtn).click();
         return new CheckoutPOM(wd);
@@ -102,7 +103,7 @@ public class CartPOM extends BasePOM {
         String subTotalPrice = wd.findElement(subTotal).getText().replaceAll(",","");
         String subTotalPriceDollarRemoved = subTotalPrice.substring(1, subTotalPrice.length());
         float subTotalPriceFloatValue = Float.parseFloat(subTotalPriceDollarRemoved);
-        orderSummaryDAO.setSubTotalPrice(subTotalPriceFloatValue);
+        orderSummaryDAO.setTotalOrderPrice(subTotalPriceFloatValue);
 
         String grandTotalPrice = wd.findElement(grandTotal).getText().replaceAll(",","");;
         String grandTotalDollarRemoved = grandTotalPrice.substring(1, grandTotalPrice.length());
@@ -112,7 +113,7 @@ public class CartPOM extends BasePOM {
         String taxAmountPrice = wd.findElement(taxAmountText).getText().replaceAll(",","");;
         String taxAmountString = taxAmountPrice.substring(taxAmountPrice.indexOf("$") + 1, taxAmountPrice.length()-1);
         float taxAmountFloat = Float.parseFloat(taxAmountString);
-        orderSummaryDAO.setTaxPrice(taxAmountFloat);
+        orderSummaryDAO.setTaxes(taxAmountFloat);
 
         cartOutputDAO.setOrderSummaryDAO(orderSummaryDAO);
        return this;

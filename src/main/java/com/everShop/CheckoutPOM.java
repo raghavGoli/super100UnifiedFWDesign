@@ -5,6 +5,7 @@ import com.everShop.dao.output.CheckoutOutputDAO;
 import com.everShop.dao.output.components.CheckoutSummaryDAO;
 import com.everShop.dao.output.components.ProductDAO;
 import com.everShop.utility.WaitManager;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -93,11 +94,13 @@ public class CheckoutPOM extends BasePOM {
         return By.xpath(updatedShippingLocator);
     }
 
+    @Step("Click Shipping Method")
     public CheckoutPOM clickShippingMethod(String shippingMethodName) {
         wd.findElement(getShippingMethod(shippingMethodName)).click();
         return this;
     }
 
+    @Step("Click on Continue payment")
     public CheckoutPOM clickContinueToPayment() {
         wd.findElement(continueToPaymentBtn).click();
         WaitManager.waitForElementToBeClickable(wd, placeOrder_btn);
@@ -109,17 +112,19 @@ public class CheckoutPOM extends BasePOM {
         return By.xpath(updatedPaymentMethodLocator);
     }
 
+    @Step("Select the payment method")
     public CheckoutPOM selectPaymentMethod(String paymentMethodName) {
         wd.findElement(getPaymentMethod(paymentMethodName)).click();
         return this;
     }
 
+    @Step("Click on Place Order")
     public SuccessPOM clickPlaceOrder() {
         wd.findElement(placeOrder_btn).click();
         return new SuccessPOM(wd);
     }
 
-
+    @Step("Fill Shipping Details")
     public CheckoutPOM fillShippingDetails(CheckoutInputDAO checkoutInputDAO) {
         setFullName(checkoutInputDAO.getFullName())
                 .setTelephoneNum(checkoutInputDAO.getTelephoneNum())

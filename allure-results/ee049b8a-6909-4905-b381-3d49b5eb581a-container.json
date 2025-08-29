@@ -1,1 +1,0 @@
-{"uuid":"ee049b8a-6909-4905-b381-3d49b5eb581a","name":"loginPageTest","children":["bf1caa84-de7c-4bc5-aabe-f047aa9a16b2"],"befores":[{"name":"initiateChromeAndNavigateToURL","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1755710015877,"stop":1755710017466}],"afters":[],"start":1755710015846,"stop":1755710024709}
