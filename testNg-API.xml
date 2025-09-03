@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Demo EverShop E2E API Automation">
+    <test name="loginPageAPITest">
+        <classes>
+            <class name="com.everShop.api.APIE2ETestCase">
+                <methods>
+                    <include name="testPlaceOrderE2E"></include>
+
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -2,11 +2,20 @@
 <suite name="Demo EverShop E2E Automation">
     <test name="loginPageTest">
         <classes>
-            <class name="com.everShop.LoginTestCase">
+            <!--
+            <class name="com.everShop.web.LoginTestCase">
                 <methods>
                     <include name="testE2EWorkFlow"></include>
+                    <include name="testE2EWorkFlow2"></include>
                 </methods>
             </class>
+-->
+            <class name="com.everShop.api.APIE2ETestCase">
+            <methods>
+                <include name="testPlaceOrderE2E"></include>
+
+            </methods>
+        </class>
         </classes>
     </test>
 </suite>
