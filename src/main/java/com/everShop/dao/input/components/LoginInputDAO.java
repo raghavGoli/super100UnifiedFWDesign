@@ -3,7 +3,20 @@ package com.everShop.dao.input.components;
 public class LoginInputDAO {
 
     private String email;
-    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+    public LoginInputDAO() {
+    }
+
+    public LoginInputDAO(String emailId, String password) {
+        this.email = emailId;
+        this.password = password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getEmail() {
         return email;
@@ -13,22 +26,8 @@ public class LoginInputDAO {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
+    private String password;
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public LoginInputDAO(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
-    public LoginInputDAO() {
-
-    }
 
     @Override
     public String toString() {

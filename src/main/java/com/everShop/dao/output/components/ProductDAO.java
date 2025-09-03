@@ -3,21 +3,17 @@ package com.everShop.dao.output.components;
 public class ProductDAO {
 
     private String productName;
-    private String  productColor;
-    private float productPrice;
-    private String productSize;
-    private int productQty;
+    private String skuLabel;
+
+    private float price;
+
+    private int qty;
+
     private float totalPrice;
-    private String skuLabel ;
-    private int itemQty;
 
-    public int getItemQty() {
-        return itemQty;
-    }
+    private String color;
 
-    public void setItemQty(int itemQty) {
-        this.itemQty = itemQty;
-    }
+    private String size;
 
     public String getProductName() {
         return productName;
@@ -25,46 +21,6 @@ public class ProductDAO {
 
     public void setProductName(String productName) {
         this.productName = productName;
-    }
-
-    public String getProductColor() {
-        return productColor;
-    }
-
-    public void setProductColor(String productColor) {
-        this.productColor = productColor;
-    }
-
-    public int getProductQty() {
-        return productQty;
-    }
-
-    public void setProductQty(int productQty) {
-        this.productQty = productQty;
-    }
-
-    public String getProductSize() {
-        return productSize;
-    }
-
-    public void setProductSize(String productSize) {
-        this.productSize = productSize;
-    }
-
-    public float getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(float productPrice) {
-        this.productPrice = productPrice;
-    }
-
-    public float getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(float totalPrice) {
-        this.totalPrice = totalPrice;
     }
 
     public String getSkuLabel() {
@@ -75,17 +31,56 @@ public class ProductDAO {
         this.skuLabel = skuLabel;
     }
 
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public float getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(float totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
     @Override
     public String toString() {
         return "ProductDAO{" +
                 "productName='" + productName + '\'' +
-                ", productColor='" + productColor + '\'' +
-                ", productPrice=" + productPrice +
-                ", productSize='" + productSize + '\'' +
-                ", productQty=" + productQty +
-                ", totalPrice=" + totalPrice +
                 ", skuLabel='" + skuLabel + '\'' +
-                ", itemQty=" + itemQty +
+                ", price=" + price +
+                ", qty=" + qty +
+                ", totalPrice=" + totalPrice +
+                ", color='" + color + '\'' +
+                ", size='" + size + '\'' +
                 '}';
     }
 }

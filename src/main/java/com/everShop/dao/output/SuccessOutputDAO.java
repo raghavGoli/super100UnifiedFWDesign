@@ -1,6 +1,5 @@
 package com.everShop.dao.output;
 
-import com.everShop.dao.output.components.CheckoutSummaryDAO;
 import com.everShop.dao.output.components.CustomerInfoDAO;
 import com.everShop.dao.output.components.OrderSummaryDAO;
 
@@ -9,18 +8,8 @@ import java.util.Objects;
 public class SuccessOutputDAO {
 
     private CustomerInfoDAO customerInfoDAO;
-    private CheckoutSummaryDAO checkoutSummaryDAO;
-    private CheckoutOutputDAO checkoutOutputDAO;
     private OrderSummaryDAO orderSummaryDao;
 
-
-    public CheckoutOutputDAO getCheckoutOutputDAO() {
-        return checkoutOutputDAO;
-    }
-
-    public void setCheckoutOutputDAO(CheckoutOutputDAO checkoutOutputDAO) {
-        this.checkoutOutputDAO = checkoutOutputDAO;
-    }
 
     public CustomerInfoDAO getCustomerInfoDAO() {
         return customerInfoDAO;
@@ -30,11 +19,6 @@ public class SuccessOutputDAO {
         this.customerInfoDAO = customerInfoDAO;
     }
 
-    public CheckoutSummaryDAO getCheckoutSummaryDAO() {
-        return checkoutSummaryDAO;
-    }
-
-
     public OrderSummaryDAO getOrderSummaryDao() {
         return orderSummaryDao;
     }
@@ -42,16 +26,13 @@ public class SuccessOutputDAO {
     public void setOrderSummaryDao(OrderSummaryDAO orderSummaryDao) {
         this.orderSummaryDao = orderSummaryDao;
     }
-    public void setCheckoutSummaryDAO(CheckoutSummaryDAO checkoutSummaryDAO) {
-        this.checkoutSummaryDAO = checkoutSummaryDAO;
-    }
+
 
     @Override
     public String toString() {
         return "SuccessOutputDAO{" +
                 "customerInfoDAO=" + customerInfoDAO +
-                ", checkoutSummaryDAO=" + checkoutSummaryDAO +
-                ", checkoutOutputDAO=" + checkoutOutputDAO +
+                ", orderSummaryDao=" + orderSummaryDao +
                 '}';
     }
 

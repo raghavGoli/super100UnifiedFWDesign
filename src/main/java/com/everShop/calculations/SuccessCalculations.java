@@ -45,7 +45,7 @@ public class SuccessCalculations {
             productDao.setProductName(product);
             int qty = Integer.parseInt(applicationInputDAO.getProductInputDAO().getProductQty());
             float price = applicationInputDAO.getProductInputDAO().getProductPrice();
-            productDao.setProductQty(qty);
+            productDao.setQty(qty);
             float totalPrice = qty*price;
             productDao.setTotalPrice(totalPrice);
             expectedProductList.add(productDao);

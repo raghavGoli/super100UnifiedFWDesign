@@ -67,7 +67,7 @@ public class HomePOM extends BasePOM {
             ProductDAO productDAO = new ProductDAO();
             productDAO.setProductName(product.findElement(productName).getText());
             String price = product.findElement(productPrice).getText();
-            productDAO.setProductPrice(Float.parseFloat(price.substring(1, price.length())));
+            productDAO.setPrice(Float.parseFloat(price.substring(1, price.length())));
             productsDao.add(productDAO);
         }
         homeOutputDAO.setFeaturedProducts(productsDao);

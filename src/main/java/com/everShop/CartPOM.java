@@ -68,17 +68,17 @@ public class CartPOM extends BasePOM {
             String productName = productCell.findElement(productNameLink).getText();
             product.setProductName(productName);
             String productSize = productCell.findElement(productSizeTxt).getText();
-            product.setProductSize(productSize);
+            product.setSize(productSize);
             String productColor = productCell.findElement(productColorTxt).getText();
-            product.setProductColor(productColor);
+            product.setColor(productColor);
             WebElement priceCell = row.findElement(By.xpath(".//td[2]"));
             String productPrice = priceCell.findElement(productPriceTxt).getText().replaceAll(",","");
             String productPriceRemovedDollar = productPrice.substring(1, productPrice.length());
-            product.setProductPrice(Float.parseFloat(productPriceRemovedDollar));
+            product.setPrice(Float.parseFloat(productPriceRemovedDollar));
 
             WebElement quantityCell = row.findElement(By.xpath(".//td[3]"));
             String productQty = quantityCell.findElement(By.xpath(".//input")).getAttribute("value");
-            product.setProductQty(Integer.parseInt(productQty));
+            product.setQty(Integer.parseInt(productQty));
 
             WebElement totalPriceCell = row.findElement(By.xpath(".//td[4]"));
             String productTotalPrice = totalPriceCell.findElement(By.xpath(".//span")).getText().replaceAll(",","");
@@ -115,7 +115,7 @@ public class CartPOM extends BasePOM {
         float taxAmountFloat = Float.parseFloat(taxAmountString);
         orderSummaryDAO.setTaxes(taxAmountFloat);
 
-        cartOutputDAO.setOrderSummaryDAO(orderSummaryDAO);
+        cartOutputDAO.setOrderSummary(orderSummaryDAO);
        return this;
     }
 

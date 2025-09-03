@@ -10,14 +10,14 @@ public class CartOutputDAO {
 
    private List<ProductDAO> products;
 
-   private OrderSummaryDAO orderSummaryDAO;
+   private OrderSummaryDAO orderSummary;
 
-    public OrderSummaryDAO getOrderSummaryDAO() {
-        return orderSummaryDAO;
+    public OrderSummaryDAO getOrderSummary() {
+        return orderSummary;
     }
 
-    public void setOrderSummaryDAO(OrderSummaryDAO orderSummaryDAO) {
-        this.orderSummaryDAO = orderSummaryDAO;
+    public void setOrderSummary(OrderSummaryDAO orderSummary) {
+        this.orderSummary = orderSummary;
     }
 
     public List<ProductDAO> getProducts() {
@@ -32,7 +32,7 @@ public class CartOutputDAO {
     public String toString() {
         return "CartOutputDAO{" +
                 "products=" + products +
-                ", orderSummaryDAO=" + orderSummaryDAO +
+                ", orderSummary=" + orderSummary +
                 '}';
     }
 }
