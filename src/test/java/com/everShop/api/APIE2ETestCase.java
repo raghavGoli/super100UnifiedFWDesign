@@ -1,9 +1,12 @@
 package com.everShop.api;
 
+import com.everShop.api.applicationdao.ApplicationAPIDao;
 import com.everShop.api.clients.EverShopClient;
+import com.everShop.api.pojo.response.ApplicationResponsePOJO;
 import com.everShop.web.utility.PropertyReader;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.qameta.allure.Description;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
@@ -17,7 +20,9 @@ public class APIE2ETestCase extends BaseAPITest{
     RequestSpecification reqSpec;
     ResponseSpecification resSpec;
     ObjectMapper objectMapper;
+    ApplicationResponsePOJO applicationResponsePOJO;
 
+    ApplicationAPIDao applicationAPIDao;
 
     @BeforeTest
     public void beforeTest() {
@@ -32,17 +37,29 @@ public class APIE2ETestCase extends BaseAPITest{
                 .build();
 
         objectMapper =new ObjectMapper();
+
+        applicationResponsePOJO = new ApplicationResponsePOJO();
+        applicationAPIDao = new ApplicationAPIDao();
     }
 
     @Test
+    @Description("API E2e TestFlow")
     public void testPlaceOrderE2E() throws JsonProcessingException {
 
 
         String email = "gvenkataraghavendra@gmail.com";
         String password = "Sdetjob@12";
+        String productName = "Nike zoom fly";
+        String productQty = "2";
 
-        EverShopClient client = new EverShopClient(reqSpec, resSpec, objectMapper);
-        client.customerLogin(email, password);
+        EverShopClient client = new EverShopClient(reqSpec, resSpec, objectMapper, applicationResponsePOJO, applicationAPIDao);
+        client.customerLogin(email, password)
+                .getProducts().extractProductDetailFromProductsResponse(productName)
+                .createCart(productName, productQty);
+
+
+        System.out.println(applicationAPIDao);
+        System.out.println(applicationResponsePOJO);
 
 
     }
